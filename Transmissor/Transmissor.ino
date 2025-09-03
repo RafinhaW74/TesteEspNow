@@ -56,11 +56,16 @@ void setup(){
     Serial.println("Falha ao adicionar o peer");
     return;
   }
+
+
+
+  dados.velocidade = 130;
+  dados.RPM = 7000;
 }
 
 void loop(){
-  dados.velocidade = 130;
-  dados.RPM = 7000;
+  dados.velocidade++;
+  dados.RPM++;
 
   //envia os dados para o receptor
   esp_err_t result = esp_now_send(receiverMac, (uint8_t *) &dados, sizeof(dados));
@@ -70,7 +75,5 @@ void loop(){
   } else {
     Serial.println("Erro ao enviar pacote");
   }
-
-  delay(2000);
 }
 
